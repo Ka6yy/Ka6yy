@@ -1,9 +1,9 @@
 <!-- Profile README: github.com/ka6yy -->
-<!-- Весь визуал запечён из chalk-дизайна в assets/cover-5.png (исходник: build/render-card.html). -->
+<!-- Весь визуал запечён из chalk-дизайна в assets/cover-6.png (исходник: build/render-card.html). -->
 <!-- Перерисовать: правь build/render-card.html → рендер headless-Chrome'ом → assets/cover-N.png (новое имя = сброс кэша camo) → обнови ссылку ниже. -->
 
 <p align="center">
-  <img src="assets/cover-5.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. 280 pull requests, 252 merged, 3 open, ~200k lines shipped across all repositories.">
+  <img src="assets/cover-6.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. 280 pull requests, 252 merged, 3 open, 415 commits, ~200k lines shipped across all repositories.">
 </p>
 
 <details>
@@ -46,6 +46,6 @@ I'm **localhost** — a full-stack product engineer with a security habit (DevSe
 **Infra & Tools** — Docker · Git · Bash · Linux (Kali) · GitHub Actions · VPN
 
 ## Stats
-Pull requests **280** · merged **252** · open **3** · lines shipped **~200k** — across all repositories (rough estimate).
+Pull requests **280** · merged **252** · open **3** · commits **415** · lines shipped **~200k** — across all repositories (rough estimate).
 
 </details>
