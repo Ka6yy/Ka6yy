@@ -1,9 +1,9 @@
 <!-- Profile README: github.com/ka6yy -->
-<!-- Визуал запечён из chalk-дизайна в assets/cover.png. Текст правится в блоке <details> ниже; -->
+<!-- Визуал запечён из chalk-дизайна в assets/cover-2.png. Текст правится в блоке <details> ниже; -->
 <!-- чтобы перерисовать картинку — обнови scratchpad/render-card.html и перерендери через headless Chrome. -->
 
 <p align="center">
-  <img src="assets/cover.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, and web-security/pentest.">
+  <img src="assets/cover-2.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, and web-security/pentest.">
 </p>
 
 <p align="center">
