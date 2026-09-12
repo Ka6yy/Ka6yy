@@ -307,3 +307,16 @@
     </div>
   </div>
 </div>
+<script>
+  /* measurement only: exposes contact-row geometry via document.title for the slicer */
+  document.fonts.ready.then(function(){
+    var r = document.querySelector('.row').getBoundingClientRect();
+    var t = document.querySelectorAll('.row .tag');
+    var a = t[0].getBoundingClientRect(), b = t[1].getBoundingClientRect();
+    document.title = "GEO" + JSON.stringify({
+      rowTop: r.top + window.scrollY,
+      rowBottom: r.bottom + window.scrollY,
+      gapX: (a.right + b.left) / 2 + window.scrollX
+    });
+  });
+</script>
