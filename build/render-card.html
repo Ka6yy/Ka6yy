@@ -1,0 +1,308 @@
+<title>ka6yy (localhost)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&display=swap">
+<style>
+  :root{
+    --paper:#0d1117;
+    --paper-2:#161616;
+    --ink:#f2f0ea;
+    --ink-2:#b7b4ac;
+    --ink-3:#84817b;
+    --line:#6a6862;
+    --brush:"Caveat","Segoe Script",cursive;
+    --body:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;position:relative;
+    padding:26px 22px 30px;overflow-x:hidden;
+  }
+  .grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;
+    opacity:.24;mix-blend-mode:screen;z-index:0}
+  .wrap{max-width:900px;margin:0 auto;position:relative;z-index:1}
+
+  .card{position:relative;background:var(--paper);padding:44px 48px 52px;
+    border:2px solid var(--ink);
+    border-radius:20px 15px 22px 13px/13px 22px 15px 20px}
+  .card::before{content:"";position:absolute;inset:5px;pointer-events:none;z-index:0;
+    border:1.3px solid var(--ink-3);
+    border-radius:15px 20px 13px 22px/20px 13px 22px 15px}
+  .card > *{position:relative;z-index:1}
+
+  /* ---------- header ---------- */
+  .hero{text-align:center;padding:6px 0 2px}
+  .name{font-family:var(--brush);font-weight:700;color:var(--ink);
+    font-size:clamp(52px,11vw,96px);line-height:.92;margin:0;
+    text-wrap:balance;letter-spacing:1px}
+  .name .paren{color:var(--ink-3)}
+  .swoosh{display:block;margin:2px auto 0;width:min(360px,72%);height:26px;color:var(--ink)}
+  .tagline{font-family:var(--body);font-style:italic;color:var(--ink-2);
+    text-align:center;margin:14px 0 20px;font-size:15.5px}
+
+  /* ---------- sketchy badges ---------- */
+  .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+  .tag{display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.4px;
+    color:var(--ink);background:var(--paper);
+    padding:7px 13px;text-decoration:none;
+    border:1.6px solid var(--ink);
+    border-radius:14px 11px 15px 9px/9px 15px 10px 14px}
+  .tag:nth-child(even){border-radius:11px 14px 9px 15px/14px 9px 15px 10px}
+  .tag svg{width:14px;height:14px;display:block}
+  .tag .val{color:var(--ink-2)}
+
+  /* ---------- dividers ---------- */
+  .rule{width:100%;height:16px;display:block;margin:26px 0;color:var(--line)}
+
+  /* ---------- sections ---------- */
+  h2{font-family:var(--brush);font-weight:700;color:var(--ink);
+    font-size:34px;line-height:1;margin:6px 0 4px;display:flex;align-items:center;gap:10px}
+  h2 .hicon{width:26px;height:26px;flex:0 0 auto;color:var(--ink)}
+  .uline{display:block;width:150px;height:12px;margin:0 0 16px;color:var(--ink)}
+
+  .about p{margin:0 0 16px;max-width:66ch}
+  .about ul{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+  .about li{display:flex;align-items:flex-start;gap:11px}
+  .about li .m{flex:0 0 auto;width:20px;height:20px;margin-top:1px;color:var(--ink-2)}
+  strong{font-weight:700;color:var(--ink)}
+
+  .projects p{margin:0 0 16px;max-width:70ch;display:flex;gap:11px}
+  .projects .pj{flex:0 0 auto;width:21px;height:21px;margin-top:1px;color:var(--ink-2)}
+  .projects a{color:var(--ink);font-weight:700;text-decoration:none;
+    border-bottom:1.6px solid var(--ink-3);padding-bottom:1px}
+
+  .group{margin:16px 0 0}
+  h3{font-family:var(--body);font-weight:700;font-size:13px;letter-spacing:.6px;
+    text-transform:uppercase;color:var(--ink-2);margin:0 0 10px;
+    display:flex;align-items:center;gap:8px}
+  h3 svg{width:17px;height:17px;color:var(--ink-2)}
+  .badges{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--ink);
+    background:var(--paper);padding:6px 11px;
+    border:1.5px solid var(--ink);
+    border-radius:12px 9px 13px 8px/8px 13px 9px 12px}
+  .badges .chip:nth-child(3n){border-radius:9px 13px 8px 12px/13px 8px 12px 9px}
+  .badges .chip:nth-child(3n+1){border-radius:13px 8px 12px 10px/9px 12px 8px 13px}
+
+  /* ---------- stats ---------- */
+  .statrow{display:flex;flex-wrap:wrap;gap:26px 46px;margin-top:6px}
+  .stat{display:flex;flex-direction:column;gap:3px}
+  .stat .num{font-family:var(--brush);font-weight:700;color:var(--ink);font-size:50px;line-height:.86}
+  .stat .lbl{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-3)}
+  .statnote{font-family:var(--mono);font-size:11px;color:var(--ink-3);margin:16px 0 0}
+
+  /* ---------- background doodles ---------- */
+  .bg{position:absolute;inset:0;overflow:hidden;pointer-events:none;border-radius:inherit}
+  .card>.bg{z-index:0}
+  .bd{position:absolute;color:var(--ink);display:block}
+
+  /* ---------- accent doodles ---------- */
+  .doodle{position:absolute;color:var(--ink-3);pointer-events:none;z-index:1}
+  .d-star{top:30px;right:40px;width:34px;height:34px}
+  .d-arrow{top:150px;left:14px;width:60px;height:40px;color:var(--line)}
+</style>
+
+<!-- filters + grain -->
+<svg class="grain" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer></filter>
+  <rect width="100%" height="100%" filter="url(#grain)"/>
+</svg>
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.4" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="rough2"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="9" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter>
+</svg>
+
+<div class="wrap">
+  <div class="card">
+
+    <!-- ===== background doodles ===== -->
+    <div class="bg">
+      <!-- extra ">_" terminal prompts -->
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:12%;right:150px;width:42px;height:25px;transform:rotate(-6deg);opacity:.09;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:19%;right:56px;width:56px;height:33px;transform:rotate(-5deg);opacity:.11;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:25%;left:40px;width:40px;height:24px;transform:rotate(6deg);opacity:.08;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:31%;right:70px;width:46px;height:27px;transform:rotate(4deg);opacity:.09;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:37%;left:150px;width:38px;height:22px;transform:rotate(-7deg);opacity:.07;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:43%;right:130px;width:50px;height:30px;transform:rotate(5deg);opacity:.10;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:49%;left:44px;width:40px;height:24px;transform:rotate(-4deg);opacity:.08;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:55%;right:58px;width:48px;height:28px;transform:rotate(6deg);opacity:.10;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:62%;left:150px;width:36px;height:21px;transform:rotate(-6deg);opacity:.07;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:69%;right:74px;width:52px;height:31px;transform:rotate(4deg);opacity:.10;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:77%;left:40px;width:42px;height:25px;transform:rotate(-5deg);opacity:.08;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:85%;right:64px;width:46px;height:27px;transform:rotate(6deg);opacity:.09;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 44 26" fill="none" stroke="currentColor" stroke-width="3.4" style="top:92%;left:150px;width:40px;height:24px;transform:rotate(-4deg);opacity:.08;filter:url(#rough2)"><path d="M6 4l12 9-12 9M24 22h14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:5%;left:16px;width:52px;height:52px;transform:rotate(-7deg);opacity:.08;filter:url(#rough2)"><rect x="4" y="7" width="32" height="26" rx="2"/><path d="M9 16l5 4-5 4M20 26h9" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:8%;right:24px;width:46px;height:46px;transform:rotate(9deg);opacity:.07;filter:url(#rough2)"><ellipse cx="20" cy="22" rx="8" ry="10"/><path d="M20 12v-3M12 16l-4-3M28 16l4-3M12 22H5M28 22h7M13 29l-4 3M27 29l4 3" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:14%;right:34px;width:50px;height:50px;transform:rotate(-6deg);opacity:.08;filter:url(#rough2)"><path d="M13 8 5 20l8 12M27 8l8 12-8 12M23 6 17 34" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:20%;left:18px;width:44px;height:44px;transform:rotate(7deg);opacity:.07;filter:url(#rough2)"><rect x="8" y="18" width="24" height="17" rx="3"/><path d="M13 18v-4a7 7 0 0 1 14 0v4"/><circle cx="20" cy="26" r="2.2" fill="currentColor" stroke="none"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:26%;right:22px;width:50px;height:50px;transform:rotate(-9deg);opacity:.07;filter:url(#rough2)"><circle cx="9" cy="10" r="3"/><circle cx="31" cy="13" r="3"/><circle cx="18" cy="30" r="3"/><path d="M9 10l9 20M31 13l-13 17M9 10l22 3" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:32%;left:16px;width:40px;height:40px;transform:rotate(8deg);opacity:.08;filter:url(#rough2)"><rect x="12" y="4" width="16" height="32" rx="3"/><path d="M17 31h6" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:38%;right:28px;width:48px;height:48px;transform:rotate(0deg);opacity:.06;filter:url(#rough2)"><circle cx="20" cy="20" r="7"/><path d="M20 6v4M20 30v4M6 20h4M30 20h4M10 10l3 3M27 27l3 3M30 10l-3 3M13 27l-3 3" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:44%;left:20px;width:46px;height:46px;transform:rotate(-5deg);opacity:.07;filter:url(#rough2)"><ellipse cx="20" cy="10" rx="12" ry="4.5"/><path d="M8 10v20c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5V10M8 20c0 2.5 5.4 4.5 12 4.5s12-2 12-4.5"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:50%;right:26px;width:44px;height:44px;transform:rotate(7deg);opacity:.08;filter:url(#rough2)"><path d="M15 6c-4 0-4 6-4 8s-3 6-3 6 3 4 3 6 0 8 4 8M25 6c4 0 4 6 4 8s3 6 3 6-3 4-3 6 0 8-4 8" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:56%;left:16px;width:54px;height:54px;transform:rotate(-4deg);opacity:.07;filter:url(#rough2)"><rect x="4" y="15" width="32" height="8" rx="1"/><path d="M9 15v4M14 15v6M19 15v4M24 15v6M29 15v4M20 23l-3 8h6z" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:62%;right:28px;width:44px;height:44px;transform:rotate(6deg);opacity:.07;filter:url(#rough2)"><path d="M11 4h13l7 7v25H11z"/><path d="M24 4v7h7M16 18h10M16 24h10M16 30h7" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:68%;left:20px;width:46px;height:46px;transform:rotate(-6deg);opacity:.07;filter:url(#rough2)"><path d="M6 16a20 20 0 0 1 28 0M11 22a12 12 0 0 1 18 0M16 28a5 5 0 0 1 8 0" stroke-linecap="round"/><circle cx="20" cy="32" r="1.6" fill="currentColor" stroke="none"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:74%;right:22px;width:46px;height:46px;transform:rotate(9deg);opacity:.06;filter:url(#rough2)"><path d="M20 5c-9 0-14 6-14 14 0 5 2 8 5 10v5h18v-5c3-2 5-5 5-10 0-8-5-14-14-14Z"/><circle cx="14" cy="19" r="3" fill="currentColor" stroke="none"/><circle cx="26" cy="19" r="3" fill="currentColor" stroke="none"/><path d="M17 29v4M20 29v4M23 29v4" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:81%;left:18px;width:44px;height:44px;transform:rotate(-8deg);opacity:.07;filter:url(#rough2)"><path d="M20 4c6 5 8 12 8 18l-4 4h-8l-4-4c0-6 2-13 8-18Z"/><circle cx="20" cy="16" r="3"/><path d="M12 26l-4 8 8-3M28 26l4 8-8-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:87%;right:30px;width:44px;height:44px;transform:rotate(6deg);opacity:.07;filter:url(#rough2)"><circle cx="10" cy="8" r="3"/><circle cx="10" cy="32" r="3"/><circle cx="30" cy="14" r="3"/><path d="M10 11v18M10 20h8a4 4 0 0 0 4-4v-1" stroke-linecap="round"/></svg>
+      <svg class="bd" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2" style="top:93%;left:22px;width:42px;height:42px;transform:rotate(-6deg);opacity:.07;filter:url(#rough2)"><path d="M8 14h20v10a8 8 0 0 1-8 8h-4a8 8 0 0 1-8-8z"/><path d="M28 16h4a4 4 0 0 1 0 8h-4M14 6c-1 2 1 3 0 5M20 6c-1 2 1 3 0 5" stroke-linecap="round"/></svg>
+    </div>
+
+    <!-- accent doodles -->
+    <svg class="doodle d-star" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" style="filter:url(#rough2)">
+      <path d="M20 4 L23 16 L36 19 L23 22 L20 34 L17 22 L4 19 L17 16 Z" stroke-linejoin="round"/>
+    </svg>
+    <svg class="doodle d-arrow" viewBox="0 0 60 40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" style="filter:url(#rough2)">
+      <path d="M4 8 C20 6 30 18 34 32" stroke-linecap="round"/>
+      <path d="M26 30 L35 34 L33 24" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <!-- ===== hero ===== -->
+    <div class="hero">
+      <h1 class="name">ka6yy <span class="paren">(localhost)</span></h1>
+      <svg class="swoosh" viewBox="0 0 360 26" fill="none" aria-hidden="true">
+        <path d="M6 17 C70 6 130 6 190 12 C250 18 300 16 354 8"
+          stroke="currentColor" stroke-width="3" stroke-linecap="round" filter="url(#rough)"/>
+      </svg>
+    </div>
+
+    <p class="tagline">build it · break it · ship it.</p>
+
+    <!-- ===== contacts ===== -->
+    <div class="row">
+      <a class="tag" href="#">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M15 2.4 12.8 13c-.16.72-.6.9-1.2.56L8.4 11.2l-1.6 1.55c-.18.17-.33.32-.67.32l.24-3.35L12.6 4.5c.27-.24-.06-.37-.42-.13L4.9 9.1 1.7 8.1c-.7-.22-.71-.7.15-1.04L14 1.5c.58-.22 1.1.14.9 1Z"/></svg>
+        Telegram <span class="val">@nynelocalhost</span>
+      </a>
+      <a class="tag" href="#">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub <span class="val">ka6yy</span>
+      </a>
+    </div>
+
+    <svg class="rule" viewBox="0 0 900 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M6 9 C160 3 320 14 460 8 C620 2 760 13 894 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/>
+    </svg>
+
+    <!-- ===== about ===== -->
+    <div class="about">
+      <h2><svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="filter:url(#rough2)"><path d="M7 11c0-3 2-5 5-5s5 2 5 5" stroke-linecap="round"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6" stroke-linecap="round"/></svg>About</h2>
+      <svg class="uline" viewBox="0 0 150 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 7 C40 3 90 10 147 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/></svg>
+      <p>I'm <strong>localhost</strong> — a full-stack product engineer with a security habit (DevSecOps). I ship end-to-end: Python / LLM backends, Next.js frontends, desktop &amp; mobile apps — then pentest them so they ship without holes.</p>
+      <ul>
+        <li><svg class="m" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Full-stack</strong> — Python (FastAPI / Django / Flask) · Next.js / React / TypeScript · PostgreSQL</span></li>
+        <li><svg class="m" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="5" cy="6" r="1.7"/><circle cx="15" cy="7" r="1.7"/><circle cx="9" cy="15" r="1.7"/><path d="M5 6l4 9M15 7l-6 8M5 6l10 1" stroke-linecap="round"/></svg><span><strong>LLM &amp; automation</strong> — prompt pipelines, document generation, scraping &amp; integrations</span></li>
+        <li><svg class="m" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="11" height="8" rx="1"/><rect x="14" y="7" width="4.5" height="9" rx="1"/><path d="M5.5 15h4" stroke-linecap="round"/></svg><span><strong>Apps</strong> — desktop (Electron) + mobile (Flutter / Capacitor)</span></li>
+        <li><svg class="m" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 2l6 3v5c0 4-3 6.5-6 8-3-1.5-6-4-6-8V5z" stroke-linejoin="round"/><path d="M7.5 10l1.8 1.8L13 8" stroke-linecap="round" stroke-linejoin="round"/></svg><span><strong>Security</strong> — pentest (SQLi · XSS · IDOR · RCE · LFI), Burp / Nmap / SQLmap</span></li>
+      </ul>
+    </div>
+
+    <svg class="rule" viewBox="0 0 900 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M6 8 C150 14 320 3 470 9 C620 15 770 4 894 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/>
+    </svg>
+
+    <!-- ===== projects ===== -->
+    <div class="projects">
+      <h2><svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="filter:url(#rough2)"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z" stroke-linejoin="round"/></svg>Featured Projects</h2>
+      <svg class="uline" viewBox="0 0 150 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 6 C50 11 95 3 147 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/></svg>
+
+      <p><svg class="pj" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="8" width="18" height="5" rx="1"/><path d="M5 8v3M8 8v4M11 8v3M14 8v4M17 8v3" stroke-linecap="round"/><path d="M11 13l-2.2 4.5h4.4z" fill="currentColor" stroke="none"/></svg><span><a href="#">Vernier</a> — my own product: design-led frontend &amp; monetization.</span></p>
+
+      <p><svg class="pj" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M11 3l8 4-8 4-8-4z"/><path d="M3 11l8 4 8-4M3 15l8 4 8-4" stroke-linecap="round" stroke-linejoin="round"/></svg><span><a href="#">legal-tech-platform</a> — full-stack SaaS: Python/LLM backend (automated document generation, external-registry connectors), Next.js/TypeScript frontend, server-side search &amp; filters.</span></p>
+
+      <p><svg class="pj" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="4" width="17" height="14" rx="1.6"/><path d="M6 9l3 2.5-3 2.5M11 14h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span><a href="#">osint-terminal</a> — browser OSINT platform: recon (dorks + breach lookup), network / WHOIS / DNS, report export. Built-in Sherlock + LLM analysis via OpenRouter.</span></p>
+
+      <p><svg class="pj" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="3.5" width="18" height="12" rx="1.5"/><path d="M8 19h6M11 15.5V19" stroke-linecap="round"/></svg><span><a href="#">desktop-app</a> — cross-platform desktop app (Electron): macOS build, gov SSO login, packaged &amp; shipped.</span></p>
+
+      <p><svg class="pj" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="6.5" height="14" rx="1"/><rect x="12.5" y="4" width="6.5" height="9" rx="1"/></svg><span><a href="#">crm</a> — task &amp; board manager for a legal team: multi-select, drag-move, REST API automation.</span></p>
+
+      <p><svg class="pj" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="11" cy="12" rx="4" ry="5"/><path d="M11 7V3.5M7 9.5L4 7.5M15 9.5l3-2M7 12H3M15 12h4M7 15l-3 2M15 15l3 2" stroke-linecap="round"/></svg><span><a href="#">pentest-portfolio</a> — 17+ freelance web app &amp; API pentests: SQLi/XSS/IDOR/RCE/LFI, DDoS-resilience, WAF &amp; rate-limit tuning, PoC reports.</span></p>
+    </div>
+
+    <svg class="rule" viewBox="0 0 900 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M6 9 C160 3 320 14 460 8 C620 2 760 13 894 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/>
+    </svg>
+
+    <!-- ===== toolbox ===== -->
+    <div class="toolbox">
+      <h2><svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="filter:url(#rough2)"><rect x="3" y="8" width="18" height="12" rx="1.5"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-linecap="round"/></svg>Toolbox</h2>
+      <svg class="uline" viewBox="0 0 150 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 7 C40 3 90 10 147 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/></svg>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="4" width="14" height="4.5" rx="1"/><rect x="3" y="11.5" width="14" height="4.5" rx="1"/><circle cx="6" cy="6.2" r=".7" fill="currentColor"/><circle cx="6" cy="13.7" r=".7" fill="currentColor"/></svg>Backend</h3>
+        <div class="badges">
+          <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Flask</span><span class="chip">Django</span><span class="chip">SQLAlchemy</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">MSSQL</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke-linecap="round" stroke-linejoin="round"/></svg>Frontend</h3>
+        <div class="badges">
+          <span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Tailwind</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2" y="4" width="11" height="8" rx="1"/><rect x="14" y="7" width="4.5" height="9" rx="1"/><path d="M5.5 15h4" stroke-linecap="round"/></svg>Apps</h3>
+        <div class="badges">
+          <span class="chip">Electron</span><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Capacitor</span><span class="chip">Android</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="5" cy="5" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="9" cy="14" r="1.7"/><path d="M5 5l4 9M15 6l-6 8M5 5l10 1" stroke-linecap="round"/></svg>AI / ML</h3>
+        <div class="badges">
+          <span class="chip">OpenRouter API</span><span class="chip">LLM integration</span><span class="chip">Prompt engineering</span><span class="chip">PyTorch</span><span class="chip">Transformers</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M10 2l6 3v5c0 4-3 6.5-6 8-3-1.5-6-4-6-8V5z" stroke-linejoin="round"/><path d="M7.5 10l1.8 1.8L13 8" stroke-linecap="round" stroke-linejoin="round"/></svg>Security / DevSecOps</h3>
+        <div class="badges">
+          <span class="chip">Burp Suite</span><span class="chip">Nmap</span><span class="chip">SQLmap</span><span class="chip">Metasploit</span><span class="chip">Wireshark</span><span class="chip">Hydra</span><span class="chip">Gobuster</span><span class="chip">hping3</span><span class="chip">iptables</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="10" cy="5" rx="6" ry="2.3"/><path d="M4 5v10c0 1.3 2.7 2.3 6 2.3s6-1 6-2.3V5"/><path d="M4 10c0 1.3 2.7 2.3 6 2.3s6-1 6-2.3"/></svg>Data / Automation</h3>
+        <div class="badges">
+          <span class="chip">Web scraping</span><span class="chip">REST APIs</span><span class="chip">OSINT</span><span class="chip">Sherlock</span><span class="chip">OTX</span><span class="chip">Wayback</span>
+        </div>
+      </div>
+
+      <div class="group">
+        <h3><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 3a3.5 3.5 0 0 0-4.6 4.5L3 13l1.5 1.5 5.5-5.4A3.5 3.5 0 0 0 15 4.5l-2 2-1.4-1.4z" stroke-linejoin="round"/></svg>Infra &amp; Tools</h3>
+        <div class="badges">
+          <span class="chip">Docker</span><span class="chip">Git</span><span class="chip">Bash</span><span class="chip">Linux (Kali)</span><span class="chip">GitHub Actions</span><span class="chip">VPN</span>
+        </div>
+      </div>
+    </div>
+
+    <svg class="rule" viewBox="0 0 900 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M6 8 C150 14 320 3 470 9 C620 15 770 4 894 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/>
+    </svg>
+
+    <div class="stats">
+      <h2><svg class="hicon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" style="filter:url(#rough2)"><path d="M4 20V4M4 20h16M8 20v-6M13 20V9M18 20v-11" stroke-linecap="round" stroke-linejoin="round"/></svg>Stats</h2>
+      <svg class="uline" viewBox="0 0 150 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 6 C50 11 95 3 147 8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" filter="url(#rough)"/></svg>
+      <div class="statrow">
+        <div class="stat"><span class="num">280</span><span class="lbl">pull requests</span></div>
+        <div class="stat"><span class="num">252</span><span class="lbl">merged</span></div>
+        <div class="stat"><span class="num">3</span><span class="lbl">open</span></div>
+        <div class="stat"><span class="num">~200k</span><span class="lbl">lines shipped</span></div>
+      </div>
+      <p class="statnote">across all repositories · rough estimate</p>
+    </div>
+  </div>
+</div>

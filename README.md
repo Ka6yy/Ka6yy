@@ -1,24 +1,17 @@
 <!-- Profile README: github.com/ka6yy -->
-<!-- Визуал запечён из chalk-дизайна в assets/cover-2.png. Текст правится в блоке <details> ниже; -->
-<!-- чтобы перерисовать картинку — обнови scratchpad/render-card.html и перерендери через headless Chrome. -->
+<!-- Весь визуал запечён из chalk-дизайна в assets/cover-3.png (исходник: build/render-card.html). -->
+<!-- Перерисовать: правь build/render-card.html → рендер headless-Chrome'ом → assets/cover-N.png (новое имя = сброс кэша camo) → обнови ссылку ниже. -->
 
 <p align="center">
-  <img src="assets/cover-2.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, and web-security/pentest.">
-</p>
-
-<p align="center">
-  <a href="https://t.me/nynelocalhost">
-    <img src="https://img.shields.io/badge/telegram-@nynelocalhost-0b0b0b?style=for-the-badge&logo=telegram&logoColor=white" />
-  </a>
-  <a href="https://github.com/ka6yy">
-    <img src="https://img.shields.io/badge/github-ka6yy-0b0b0b?style=for-the-badge&logo=github&logoColor=white" />
-  </a>
+  <img src="assets/cover-3.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. 280 pull requests, 252 merged, 3 open, ~200k lines shipped across all repositories.">
 </p>
 
 <details>
-<summary><b>Text version</b> — selectable skills &amp; projects</summary>
+<summary><b>Text version</b> — selectable contacts, skills &amp; projects</summary>
 
 <br>
+
+**Contacts** — Telegram [@nynelocalhost](https://t.me/nynelocalhost) · GitHub [ka6yy](https://github.com/ka6yy)
 
 ## About
 I'm **localhost** — a full-stack product engineer with a security habit (DevSecOps). I ship end-to-end: Python / LLM backends, Next.js frontends, desktop & mobile apps — then pentest them so they ship without holes.
@@ -52,16 +45,7 @@ I'm **localhost** — a full-stack product engineer with a security habit (DevSe
 **Data / Automation** — Web scraping · REST APIs · OSINT · Sherlock · OTX · Wayback
 **Infra & Tools** — Docker · Git · Bash · Linux (Kali) · GitHub Actions · VPN
 
+## Stats
+Pull requests **280** · merged **252** · open **3** · lines shipped **~200k** — across all repositories (rough estimate).
+
 </details>
-
----
-
-<!--STATS:START-->
-<p align="center">
-  <img src="https://img.shields.io/badge/Pull_Requests-280-0b0b0b?style=for-the-badge&logo=github&logoColor=white" alt="Pull requests">
-  <img src="https://img.shields.io/badge/Merged-252-0b0b0b?style=for-the-badge&logoColor=white" alt="Merged">
-  <img src="https://img.shields.io/badge/Open-3-0b0b0b?style=for-the-badge&logoColor=white" alt="Open">
-  <img src="https://img.shields.io/badge/Lines_shipped-~200k-0b0b0b?style=for-the-badge&logoColor=white" alt="Lines shipped">
-</p>
-<p align="center"><sub>across all repositories · rough estimate · auto-updated 2026-09-12</sub></p>
-<!--STATS:END-->
