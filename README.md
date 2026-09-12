@@ -1,9 +1,9 @@
 <!-- Profile README: github.com/ka6yy -->
-<!-- Весь визуал запечён из chalk-дизайна в assets/cover-3.png (исходник: build/render-card.html). -->
+<!-- Весь визуал запечён из chalk-дизайна в assets/cover-4.png (исходник: build/render-card.html). -->
 <!-- Перерисовать: правь build/render-card.html → рендер headless-Chrome'ом → assets/cover-N.png (новое имя = сброс кэша camo) → обнови ссылку ниже. -->
 
 <p align="center">
-  <img src="assets/cover-3.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. 280 pull requests, 252 merged, 3 open, ~200k lines shipped across all repositories.">
+  <img src="assets/cover-4.png" width="860" alt="ka6yy (localhost) — full-stack product engineer with a security habit (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. 280 pull requests, 252 merged, 3 open, ~200k lines shipped across all repositories.">
 </p>
 
 <details>
