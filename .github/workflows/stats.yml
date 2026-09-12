@@ -1,0 +1,84 @@
+name: Update profile stats
+
+on:
+  schedule:
+    - cron: '17 6 * * *'   # every day 06:17 UTC
+  workflow_dispatch:        # allow manual run from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile-stats
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compute stats and update README
+        env:
+          # PAT with `repo` + `read:org` so private/org PRs are counted.
+          # Add it under Settings → Secrets and variables → Actions → New secret: STATS_TOKEN
+          GH_TOKEN: ${{ secrets.STATS_TOKEN }}
+        run: |
+          set -e
+          if [ -z "$GH_TOKEN" ]; then
+            echo "STATS_TOKEN secret is not set — skipping (numbers stay as last committed)."
+            exit 0
+          fi
+
+          total=$(gh api -X GET search/issues -f q="is:pr author:@me" --jq '.total_count')
+          merged=$(gh api -X GET search/issues -f q="is:pr author:@me is:merged" --jq '.total_count')
+          open=$(gh api -X GET search/issues -f q="is:pr author:@me is:open" --jq '.total_count')
+
+          # Guard: never clobber good numbers with an empty/zero result.
+          if ! echo "$total" | grep -qE '^[0-9]+$' || [ "$total" -eq 0 ]; then
+            echo "Got a bad total ($total) — skipping update."
+            exit 0
+          fi
+
+          # Rough lines-of-code estimate: average additions over a sample of closed PRs × total PRs.
+          pairs=$(gh search prs --author=@me --state=closed --limit 40 --json repository,number \
+                    --jq '.[] | "\(.repository.nameWithOwner) \(.number)"')
+          add=0; n=0
+          while read -r repo num; do
+            [ -z "$repo" ] && continue
+            a=$(gh api "repos/$repo/pulls/$num" --jq '.additions' 2>/dev/null || echo "")
+            echo "$a" | grep -qE '^[0-9]+$' || continue
+            add=$((add + a)); n=$((n + 1))
+          done <<< "$pairs"
+          if [ "$n" -gt 0 ]; then est=$(( (add / n) * total )); else est=0; fi
+          if [ "$est" -ge 1000 ]; then lines="~$((est / 1000))k"; else lines="$est"; fi
+
+          today=$(date -u +%Y-%m-%d)
+          block="<p align=\"center\">
+  <img src=\"https://img.shields.io/badge/Pull_Requests-${total}-0b0b0b?style=for-the-badge&logo=github&logoColor=white\" alt=\"Pull requests\">
+  <img src=\"https://img.shields.io/badge/Merged-${merged}-0b0b0b?style=for-the-badge&logoColor=white\" alt=\"Merged\">
+  <img src=\"https://img.shields.io/badge/Open-${open}-0b0b0b?style=for-the-badge&logoColor=white\" alt=\"Open\">
+  <img src=\"https://img.shields.io/badge/Lines_shipped-${lines}-0b0b0b?style=for-the-badge&logoColor=white\" alt=\"Lines shipped\">
+</p>
+<p align=\"center\"><sub>across all repositories · rough estimate · auto-updated ${today}</sub></p>"
+
+          python3 - "$block" <<'PY'
+import re, sys
+block = sys.argv[1]
+path = "README.md"
+s = open(path, encoding="utf-8").read()
+s2 = re.sub(r"<!--STATS:START-->.*?<!--STATS:END-->",
+            "<!--STATS:START-->\n" + block + "\n<!--STATS:END-->",
+            s, flags=re.S)
+open(path, "w", encoding="utf-8").write(s2)
+PY
+
+          if git diff --quiet; then
+            echo "No stats change."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "chore: auto-update profile stats"
+          git push

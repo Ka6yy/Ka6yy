@@ -53,3 +53,15 @@ I'm **localhost** — a full-stack product engineer with a security habit (DevSe
 **Infra & Tools** — Docker · Git · Bash · Linux (Kali) · GitHub Actions · VPN
 
 </details>
+
+---
+
+<!--STATS:START-->
+<p align="center">
+  <img src="https://img.shields.io/badge/Pull_Requests-280-0b0b0b?style=for-the-badge&logo=github&logoColor=white" alt="Pull requests">
+  <img src="https://img.shields.io/badge/Merged-252-0b0b0b?style=for-the-badge&logoColor=white" alt="Merged">
+  <img src="https://img.shields.io/badge/Open-3-0b0b0b?style=for-the-badge&logoColor=white" alt="Open">
+  <img src="https://img.shields.io/badge/Lines_shipped-~200k-0b0b0b?style=for-the-badge&logoColor=white" alt="Lines shipped">
+</p>
+<p align="center"><sub>across all repositories · rough estimate · auto-updated 2026-09-12</sub></p>
+<!--STATS:END-->
