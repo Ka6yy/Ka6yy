@@ -3,13 +3,15 @@
 <!-- Перерисовать: правь build/render-card.html → рендер headless-Chrome'ом → assets/cover-N.png (новое имя = сброс кэша camo) → обнови ссылку ниже. -->
 
 <p align="center">
-  <img src="assets/top.png" width="860" alt="ka6yy (localhost) — build it · break it · ship it.">
+  <img src="assets/hero.png" width="860" alt="ka6yy (localhost) — build it · break it · ship it.">
 </p>
 <p align="center">
-  <a href="https://t.me/nynelocalhost"><img src="assets/tg.png" width="463" alt="Telegram @nynelocalhost"></a><a href="https://github.com/ka6yy"><img src="assets/gh.png" width="397" alt="GitHub ka6yy"></a>
+  <a href="https://t.me/nynelocalhost"><img src="assets/tgc.png" width="206" alt="Telegram @nynelocalhost"></a>
+  &nbsp;
+  <a href="https://github.com/ka6yy"><img src="assets/ghc.png" width="140" alt="GitHub ka6yy"></a>
 </p>
 <p align="center">
-  <img src="assets/bottom.png" width="860" alt="Full-stack product engineer (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. About, Featured Projects, Toolbox, and Stats — 280 pull requests, 252 merged, 3 open, 415 commits, ~200k lines across all repositories.">
+  <img src="assets/body.png" width="860" alt="Full-stack product engineer (DevSecOps): Python/LLM backends, Next.js frontends, desktop & mobile apps, web security. About, Featured Projects, Toolbox, and Stats — 280 pull requests, 252 merged, 3 open, 415 commits, ~200k lines across all repositories.">
 </p>
 
 <details>

@@ -26,12 +26,7 @@
     opacity:.24;mix-blend-mode:screen;z-index:0}
   .wrap{max-width:900px;margin:0 auto;position:relative;z-index:1}
 
-  .card{position:relative;background:var(--paper);padding:44px 48px 52px;
-    border:2px solid var(--ink);
-    border-radius:20px 15px 22px 13px/13px 22px 15px 20px}
-  .card::before{content:"";position:absolute;inset:5px;pointer-events:none;z-index:0;
-    border:1.3px solid var(--ink-3);
-    border-radius:15px 20px 13px 22px/20px 13px 22px 15px}
+  .card{position:relative;background:var(--paper);padding:24px 40px 40px}
   .card > *{position:relative;z-index:1}
 
   /* ---------- header ---------- */
@@ -316,7 +311,8 @@
     document.title = "GEO" + JSON.stringify({
       rowTop: r.top + window.scrollY,
       rowBottom: r.bottom + window.scrollY,
-      gapX: (a.right + b.left) / 2 + window.scrollX
+      aL: a.left + window.scrollX, aR: a.right + window.scrollX,
+      bL: b.left + window.scrollX, bR: b.right + window.scrollX
     });
   });
 </script>
